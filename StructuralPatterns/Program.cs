@@ -25,6 +25,8 @@ public class PushService {
 
 
 
+
+
 using StructuralPatterns;
 
 
@@ -33,3 +35,29 @@ var sender = new NotificationFacade(new SmsService(), new EmailService(), new Pu
 sender.SendSimpleMessage("+1234324325", "SIMPLE TEXT1");
 sender.SendWithTitle("ttt@grfgfg.com", "Title", "Text with title", true);
 sender.SendUrgentPushWithSms("+1234324325", "URGENT MESSAGE!!!");
+
+
+
+Kava kava = new Kava();
+
+Action<IKava> printKavaInfo = p => Console.WriteLine(p.GetDescription() + " costs " + p.GetPrice());
+
+var myKava = new KavaDecorator(
+    new KavaDecorator(
+        new KavaDecorator(
+            new KavaDecorator(
+                new KavaDecorator(
+                    new KavaDecorator(
+                        kava,
+                        "Coffee",
+                        20),
+                    "with milk", 12),
+                "with milk", 12),
+            "with chocolate", 18),
+        "with vannila syrop", 15),
+    "with milk", 2);
+
+
+printKavaInfo(myKava);
+
+
