@@ -28,6 +28,9 @@ public class PushService {
 
 
 using StructuralPatterns;
+using System.Text;
+
+Console.OutputEncoding = Encoding.UTF8;
 
 
 var sender = new NotificationFacade(new SmsService(), new EmailService(), new PushService());
@@ -60,4 +63,28 @@ var myKava = new KavaDecorator(
 
 printKavaInfo(myKava);
 
+
+var menu = new Section("Головне меню");
+
+var soups = new Section("Супи");
+soups.AddChild(new Dish("Борщ", 95));
+soups.AddChild(new Dish("Солянка", 110));
+
+
+var baseline = new Section("Основні страви");
+baseline.AddChild(new Dish("Піца 4 сири", 220));
+baseline.AddChild(new Dish("Стейк Рібай", 380));
+
+var discountOffer = new Section("Акційні пропозиції");
+discountOffer.AddChild(new Dish("Піца 4 сири зі знижкою 20%", 176));
+discountOffer.AddChild(new Dish("Стейк Рібай зі знижкою 20%", 304));
+
+
+menu.AddChild(soups);
+menu.AddChild(baseline);
+menu.AddChild(discountOffer);
+
+menu.Display(new TextPrinter());
+menu.Display(new HTMLprinter());
+menu.Display(new JsonPrinter());
 
